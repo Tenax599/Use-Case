@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- 必须的 meta 标签 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>index</title>
+    <link rel="stylesheet" href="..\UseCase\Content\bootstrap-5.3.0-alpha1-dist\css\bootstrap.min.css">
+    <link rel="stylesheet" href="..\UseCase\Content\css\index.css">
+    <script src="..\UseCase\Content\script\jquery.js"></script>
+    <script src="..\UseCase\Content\bootstrap-5.3.0-alpha1-dist\js\bootstrap.min.js"></script>
+    <script src="..\UseCase\Content\script\modal.js"></script>
+    <script src=" ..\UseCase\Content\script\utilities.js"></script>
+    <script src="..\UseCase\Content\script\server.js"></script>
+</head>
+
+<body>
+
+    <div class=" container mt-5 mb-5">
+
+        <?php include('message.php'); ?>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+
+                        <h4 style="margin-top:8px">
+                            <button class="navbar-toggler bg-gery" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarToggleExternalContent"
+                                aria-controls="navbarToggleExternalContent" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            Student View Details
+                            <!-- <a href="student-create.php" class="btn btn-primary float-end">Add student</a> -->
+                            <!-- <button class="btn btn-primary float-end" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#Addstudent" aria-controls="Addstudent">Add student</button> -->
+                            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal"
+                                data-bs-target="#addStudentModal">
+                                添加学生
+                            </button>
+                        </h4>
+
+                        <div class="collapse" id="navbarToggleExternalContent">
+                            <div class="p-4">
+                                <button id="logout-btn" class="btn btn-danger">注销</button>
+                                <button class="btn btn-primary"><a href="Adminteacher.html"
+                                        class="no-underline">教师</a></button>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="addStudentModal" tabindex="-3" role="dialog"
+                            aria-labelledby="addStudentModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-light">
+                                        <h1 class="modal-title">添加学生</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="student-add">
+
+                                            <div class="input-group input-group-lg mb-3">
+                                                <label class="input-group-text">学号</label>
+                                                <input type="text" name="student_id" id="student_id"
+                                                    class="form-control">
+                                            </div>
+
+                                            <div class="input-group input-group-lg mb-3">
+                                                <label class="input-group-text">班级</label>
+                                                <input type="text" name="class" id="class" class="form-control">
+                                            </div>
+
+                                            <div class="input-group input-group-lg mb-3">
+                                                <label class="input-group-text">姓名</label>
+                                                <input type="text" name="name" id="name" class="form-control">
+                                            </div>
+
+                                            <div class="input-group input-group-lg mb-3">
+                                                <label class="input-group-text">性别</label>
+                                                <input type="text" name="gender" id="gender" class="form-control">
+                                            </div>
+
+                                            <div class="input-group input-group-lg mb-3">
+                                                <label class="input-group-text">出生年月</label>
+                                                <input type="text" name="birthdate" id="birthdate" class="form-control">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="mb-3">
+                                            <button type="button" class="btn btn-primary" id="saveStudentBtn">Save
+                                                Student</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="editStudentModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-light">
+                                        <h5 class="modal-title">编辑学生信息</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body p-4">
+                                        <form id="editStudentForm">
+                                            <div class="input-group input-group-lg mb-3">
+                                                <label for="studentId" class="input-group-text">学号</label>
+                                                <input type="text" id="studentId" name="student_id" class="form-control"
+                                                    aria-label="Sizing example input"
+                                                    aria-describedby="inputGroup-sizing-lg" disabled>
+                                            </div>
+
+                                            <div class="input-group input-group-lg mb-3">
+                                                <label for="Student_name" class="input-group-text">姓名</label>
+                                                <input type="text" id="Student_name" name="name" class="form-control"
+                                                    aria-label=" Sizing example input"
+                                                    aria-describedby="inputGroup-sizing-lg">
+                                            </div>
+
+                                            <div class=" input-group input-group-lg mb-3">
+                                                <label for="Student_gender" class="input-group-text">性别</label>
+                                                <input type="text" id="Student_gender" name="gender"
+                                                    class="form-control" aria-label=" Sizing example input"
+                                                    aria-describedby="inputGroup-sizing-lg">
+                                            </div>
+
+                                            <div class=" input-group input-group-lg mb-3">
+                                                <label for="Student_class" class="input-group-text">班级</label>
+                                                <input type="text" id="Student_class" name="class" class="form-control"
+                                                    aria-label=" Sizing example input"
+                                                    aria-describedby="inputGroup-sizing-lg">
+                                            </div>
+
+                                            <div class=" input-group input-group-lg mb-3">
+                                                <label for="Student_course" class="input-group-text">头像</label>
+                                                <input type="text" id="Student_avatar" name="avatar"
+                                                    class="form-control" aria-label=" Sizing example input"
+                                                    aria-describedby="inputGroup-sizing-lg">
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class=" modal-footer bg-light">
+                                        <button type="button" class="btn btn-primary"
+                                            id="updateStudentBtn">保存更改</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card-body">
+                        <form id="search-form" class="input-group mb-3">
+                            <input type="text" id="search-query" name="search_query" placeholder="Search students..."
+                                class="form-control">
+                            <button type="submit" id="search-student" name="search_student"
+                                class="btn btn-outline-secondary" type="button">Search</button>
+                        </form>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>学号</th>
+                                    <th>姓名</th>
+                                    <th>性别</th>
+                                    <th>班级</th>
+                                    <th>出生日期</th>
+                                    <th>密码</th>
+                                    <th>头像</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="student-list">
+                                <!-- Student list will be populated here -->
+                            </tbody>
+
+                        </table>
+
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination" id="pagination-links">
+                                <!-- Pagination links will be populated here -->
+                            </ul>
+                        </nav>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="..\UseCase\Content\script\main.js"></script>
+    <script src="..\UseCase\Content\script\logout.js"></script>
+    <script src="..\UseCase\Content\script\Addstudent.js"></script>
+    <script src="..\UseCase\Content\script\Password_reset.js"></script>
+
+
+</body>
+
+</html>
